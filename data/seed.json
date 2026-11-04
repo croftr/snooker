@@ -1,0 +1,865 @@
+{
+ "schema": 1,
+ "players": {
+  "bob": {
+   "name": "Bob",
+   "nick": "Bobby",
+   "portrait": "/photos/bob-trophy.jpg"
+  },
+  "mike": {
+   "name": "Mike",
+   "nick": "Mikey",
+   "portrait": "/photos/mike-trophy.jpg"
+  }
+ },
+ "championship": {
+  "target": 3,
+  "note": "1st to 3 tournaments is new Champ"
+ },
+ "tournaments": [
+  {
+   "id": "t1",
+   "name": "Tournament 1",
+   "year": "2005",
+   "format": {
+    "type": "lost"
+   },
+   "winner": "mike",
+   "bonusValue": 0,
+   "photo": "/photos/mike-trophy.jpg",
+   "notes": [
+    "All records lost in the great flood of 2005"
+   ],
+   "sessions": []
+  },
+  {
+   "id": "t2",
+   "name": "Tournament 2",
+   "year": "2006",
+   "format": {
+    "type": "league",
+    "sessions": 30,
+    "win": 3,
+    "draw": 1
+   },
+   "bonusValue": 0,
+   "photo": "/photos/bob-trophy.jpg",
+   "notes": [
+    "2nd tournament of new championship. 1st to 3 tournaments is new Champ",
+    "1st Tournament to Mike"
+   ],
+   "sessions": [
+    {
+     "id": "t2-1",
+     "date": "2006-02-01",
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-2",
+     "date": null,
+     "bob": 1,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-3",
+     "date": null,
+     "bob": 2,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-4",
+     "date": null,
+     "bob": 0,
+     "mike": 4,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-5",
+     "date": null,
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-6",
+     "date": null,
+     "bob": 1,
+     "mike": 3,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-7",
+     "date": null,
+     "bob": 3,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-8",
+     "date": null,
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-9",
+     "date": null,
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-10",
+     "date": null,
+     "bob": 1,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-11",
+     "date": null,
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-12",
+     "date": null,
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-13",
+     "date": null,
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-14",
+     "date": null,
+     "bob": 2,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-15",
+     "date": null,
+     "bob": 2,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-16",
+     "date": null,
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-17",
+     "date": null,
+     "bob": 3,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-18",
+     "date": null,
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-19",
+     "date": null,
+     "bob": 2,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-20",
+     "date": null,
+     "bob": 1,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-21",
+     "date": null,
+     "bob": 2,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-22",
+     "date": null,
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-23",
+     "date": null,
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-24",
+     "date": null,
+     "bob": 2,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-25",
+     "date": null,
+     "bob": 1,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-26",
+     "date": "2006-09-30",
+     "bob": 1,
+     "mike": 4,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-27",
+     "date": "2006-10-01",
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-28",
+     "date": "2006-10-07",
+     "bob": 2,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-29",
+     "date": "2006-10-13",
+     "bob": 3,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t2-30",
+     "date": "2006-10-28",
+     "bob": 3,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "name": "Tournament 3",
+   "year": "2006–2017",
+   "format": {
+    "type": "race",
+    "raceTo": 25
+   },
+   "bonusValue": 0.1,
+   "photo": "/photos/t3-cup.jpg",
+   "notes": [],
+   "sessions": [
+    {
+     "id": "t3-1",
+     "date": "2006-10-22",
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-2",
+     "date": "2006-11-20",
+     "bob": 0,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-3",
+     "date": "2006-12-31",
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-4",
+     "date": "2007-03-02",
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-5",
+     "date": "2007-04-16",
+     "bob": 1,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-6",
+     "date": "2007-05-06",
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-7",
+     "date": "2007-05-18",
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-8",
+     "date": "2007-06-04",
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-9",
+     "date": "2007-06-10",
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": 0,
+     "bonusMike": 1,
+     "notes": [
+      {
+       "author": null,
+       "text": "Bonus point scheme introduced",
+       "date": null
+      },
+      {
+       "author": "mike",
+       "text": "Won 2nd Frame without fouling",
+       "date": null
+      }
+     ]
+    },
+    {
+     "id": "t3-10",
+     "date": "2007-08-02",
+     "bob": 0,
+     "mike": 0,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": [
+      {
+       "author": "mike",
+       "text": "Mikes pre-wedding game. Score unkown, but mike probably won. VOID MATCH",
+       "date": null
+      }
+     ],
+     "isVoid": true
+    },
+    {
+     "id": "t3-11",
+     "date": "2008-01-04",
+     "bob": 0,
+     "mike": 4,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-12",
+     "date": "2009-02-20",
+     "bob": 3,
+     "mike": 1,
+     "bonusBob": null,
+     "bonusMike": null,
+     "notes": []
+    },
+    {
+     "id": "t3-13",
+     "date": "2009-09-26",
+     "bob": 1,
+     "mike": 0,
+     "bonusBob": 0,
+     "bonusMike": 2,
+     "notes": [
+      {
+       "author": null,
+       "text": "Bob fouled twice on the run. Mike was leading when we had to leave.",
+       "date": null
+      }
+     ]
+    },
+    {
+     "id": "t3-14",
+     "date": "2010-06-10",
+     "bob": 1,
+     "mike": 0,
+     "bonusBob": 3,
+     "bonusMike": 1,
+     "notes": [
+      {
+       "author": null,
+       "text": "Bob: consecutive fouls x2. Bob was in the lead when we ended 2nd frame",
+       "date": null
+      },
+      {
+       "author": null,
+       "text": "Mike: consecutive fouls",
+       "date": null
+      }
+     ]
+    },
+    {
+     "id": "t3-15",
+     "date": "2010-07-23",
+     "bob": 1,
+     "mike": 3,
+     "bonusBob": 0,
+     "bonusMike": 3,
+     "notes": [
+      {
+       "author": null,
+       "text": "1 frame without fouling. Double plant boy achieved",
+       "date": null
+      }
+     ]
+    },
+    {
+     "id": "t3-16",
+     "date": "2015-12-10",
+     "bob": 0,
+     "mike": 1,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t3-17",
+     "date": "2016-09-09",
+     "bob": 2,
+     "mike": 2,
+     "bonusBob": 1,
+     "bonusMike": 0,
+     "notes": [
+      {
+       "author": "mike",
+       "text": "no fouls in the last frame, or rest not used",
+       "date": "2016-09-09"
+      },
+      {
+       "author": "mike",
+       "text": "Marked as resolved",
+       "date": "2017-08-12"
+      },
+      {
+       "author": "bob",
+       "text": "Updated with my undeserved 2 frames. Re-opened",
+       "date": "2020-03-01"
+      }
+     ]
+    },
+    {
+     "id": "t3-18",
+     "date": "2017-02-03",
+     "bob": 0,
+     "mike": 2,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t3-19",
+     "date": "2017-03-25",
+     "bob": 3,
+     "mike": 2,
+     "bonusBob": 0,
+     "bonusMike": 1,
+     "notes": [
+      {
+       "author": "mike",
+       "text": "bobby made 2 successive fouls",
+       "date": "2017-03-25"
+      }
+     ]
+    },
+    {
+     "id": "t3-20",
+     "date": "2017-08-11",
+     "bob": 0,
+     "mike": 1,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    }
+   ]
+  },
+  {
+   "id": "t4",
+   "name": "Tournament 4",
+   "year": "2017–",
+   "format": {
+    "type": "race",
+    "raceTo": 25
+   },
+   "bonusValue": 0.1,
+   "photo": "/photos/t4-table.jpg",
+   "notes": [],
+   "sessions": [
+    {
+     "id": "t4-1",
+     "date": "2017-08-11",
+     "bob": 1,
+     "mike": 1,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t4-2",
+     "date": "2018-08-31",
+     "bob": 2,
+     "mike": 1,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t4-3",
+     "date": "2019-03-02",
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": 0,
+     "bonusMike": 1,
+     "notes": []
+    },
+    {
+     "id": "t4-4",
+     "date": "2020-02-29",
+     "bob": 2,
+     "mike": 0,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t4-5",
+     "date": "2021-08-05",
+     "bob": 3,
+     "mike": 1,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t4-6",
+     "date": "2021-09-10",
+     "bob": 3,
+     "mike": 1,
+     "bonusBob": 0,
+     "bonusMike": 0,
+     "notes": []
+    },
+    {
+     "id": "t4-7",
+     "date": "2023-03-10",
+     "bob": 1,
+     "mike": 2,
+     "bonusBob": 2,
+     "bonusMike": 0,
+     "notes": [
+      {
+       "author": "mike",
+       "text": "double plant boy",
+       "date": "2023-03-12"
+      },
+      {
+       "author": "bob",
+       "text": "I thank you",
+       "date": "2023-03-12"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "bonusRules": [
+  {
+   "id": "r1",
+   "text": "Winning a frame without potting a red",
+   "points": 8
+  },
+  {
+   "id": "r2",
+   "text": "Being in the lead and have at least 10 points when taxi or lift calls",
+   "points": 1
+  },
+  {
+   "id": "r3",
+   "text": "Your opponent fouling 2 times in successive shots",
+   "points": 1,
+   "note": "I didn't realise this was a BP. Imagine it has happened a few times without us realising"
+  },
+  {
+   "id": "r4",
+   "text": "Matching the highest break",
+   "points": 10
+  },
+  {
+   "id": "r5",
+   "text": "Achieve Double Plant Boy",
+   "points": 2
+  },
+  {
+   "id": "r6",
+   "text": "Achieve Triple Plant Boy",
+   "points": 3
+  },
+  {
+   "id": "r7",
+   "text": "Achieve Quadruple Plant Boy",
+   "points": 4
+  },
+  {
+   "id": "r8",
+   "text": "Achieve True Plant Boy status",
+   "points": 10
+  },
+  {
+   "id": "r9",
+   "text": "Winning a frame without opponent potting a ball",
+   "points": 15
+  },
+  {
+   "id": "r10",
+   "text": "Beating the highest break",
+   "points": 17
+  },
+  {
+   "id": "r11",
+   "text": "Winning a frame without potting a ball",
+   "points": 150
+  }
+ ],
+ "decrees": [
+  {
+   "id": "d1",
+   "text": "Quadruple plant boy to be abolished at the next plant boy reset"
+  },
+  {
+   "id": "d2",
+   "text": "Risk Shots..."
+  }
+ ],
+ "plantBoy": {
+  "definition": "",
+  "ranks": [
+   "Plant Boy",
+   "Double Plant Boy",
+   "Triple Plant Boy",
+   "True Plant Boy",
+   "TPB 1st dan",
+   "TPB 2nd dan",
+   "TPB 3rd dan"
+  ],
+  "holders": {
+   "bob": "Double Plant Boy",
+   "mike": null
+  },
+  "history": [
+   {
+    "id": "h1",
+    "period": "?? – 23 Jul 2010",
+    "text": "Mike Double"
+   },
+   {
+    "id": "h2",
+    "period": "23 Jul 2010 – 3 Feb 2017",
+    "text": "Bob Single"
+   },
+   {
+    "id": "h3",
+    "period": "10 Mar 2023",
+    "text": "Bobby, Double Plant Boy (“I thank you”)"
+   }
+  ]
+ },
+ "records": [
+  {
+   "id": "high",
+   "label": "High Break",
+   "bob": "28",
+   "mike": "32"
+  },
+  {
+   "id": "pbs",
+   "label": "PBS",
+   "bob": "PB",
+   "mike": "TPB"
+  },
+  {
+   "id": "bpps",
+   "label": "BPPS",
+   "bob": "3",
+   "mike": "2"
+  }
+ ],
+ "awards": [
+  {
+   "id": "a0",
+   "title": "Current Champ",
+   "holder": "bob"
+  },
+  {
+   "id": "a1",
+   "title": "Dutch Champ",
+   "holder": "bob"
+  },
+  {
+   "id": "a2",
+   "title": "Biggest Loser",
+   "holder": "bob"
+  },
+  {
+   "id": "a3",
+   "title": "Spawn King",
+   "holder": "mike"
+  },
+  {
+   "id": "a4",
+   "title": "Gayest Shot",
+   "holder": "bob"
+  },
+  {
+   "id": "a5",
+   "title": "Biggest Nobhead",
+   "holder": "bob"
+  }
+ ],
+ "gallery": [
+  {
+   "id": "g1",
+   "src": "/photos/mike-trophy.jpg",
+   "caption": "Mike, Tournament 1 winner"
+  },
+  {
+   "id": "g2",
+   "src": "/photos/bob-trophy.jpg",
+   "caption": "Bob, kissing Tournament 2"
+  },
+  {
+   "id": "g3",
+   "src": "/photos/mike-cap.jpg",
+   "caption": "Mike, at the table"
+  },
+  {
+   "id": "g4",
+   "src": "/photos/tam.jpg",
+   "caption": "A distinguished visitor from the Highlands"
+  },
+  {
+   "id": "g5",
+   "src": "/photos/t4-table.jpg",
+   "caption": "Tournament 4, under the referee's gaze"
+  },
+  {
+   "id": "g6",
+   "src": "/photos/t3-cup.jpg",
+   "caption": "Tournament 3, cup in hand"
+  },
+  {
+   "id": "g7",
+   "src": "/photos/table-level-1.jpg",
+   "caption": "Worm's-eye view, part one"
+  },
+  {
+   "id": "g8",
+   "src": "/photos/table-level-2.jpg",
+   "caption": "Worm's-eye view, part two"
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+{
+  "framework": "vite",
+  "regions": ["lhr1"],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+}

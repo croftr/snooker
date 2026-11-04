@@ -1,0 +1,17 @@
+node_modules
+dist
+.vercel
+.env*.local
+.env
+# local dev copy of the data + dev photo uploads
+data/local.json
+public/uploads
+# original source files (web-ready copies live in public/photos and data/seed.json)
+/*.bmp
+/*.jbf
+/*.xlsx
+/Mike_Snnoker1.jpg
+/mjike snooker2.jpg
+/rob_trophy.jpg
+/snooker1.jpg
+/snooker2.jpg
