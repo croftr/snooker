@@ -27,7 +27,8 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+/* overscroll-behavior: stops Chrome's own swipe-through-history firing on top of the app's swipe navigation. */
+html { scroll-behavior: smooth; scroll-padding-top: 90px; overscroll-behavior-x: none; }
 body {
   margin: 0;
   color: var(--cream);

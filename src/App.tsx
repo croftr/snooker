@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, Redirect, Route, Switch, useLocation } from 'wouter';
 import { useStore } from './lib/store';
 import { liveTournament } from './lib/stats';
+import { useSwipeNav } from './lib/useSwipeNav';
 import { Modal } from './components/ui';
 import { Home } from './pages/Home';
 import { TournamentPage } from './pages/TournamentPage';
@@ -90,12 +91,37 @@ function ConflictBanner() {
   );
 }
 
+const navIndex = (loc: string) => NAV.findIndex((n) => (n.exact ? loc === n.href : loc.startsWith(n.href)));
+
+/** Swiping moves through the top menu, wrapping round at either end. */
+function SwipeNav() {
+  const [loc, go] = useLocation();
+  useSwipeNav((direction) => {
+    const next = NAV[(Math.max(0, navIndex(loc)) + direction + NAV.length) % NAV.length];
+    go(next.href);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelector('main')?.animate(
+        [{ transform: `translateX(${direction * 48}px)`, opacity: 0.2 }, { transform: 'none', opacity: 1 }],
+        { duration: 220, easing: 'cubic-bezier(.2, .8, .3, 1)' },
+      );
+    }
+  });
+  return null;
+}
+
 function Header() {
   const [loc] = useLocation();
+  const navRef = useRef<HTMLElement>(null);
+  // On a phone the menu scrolls sideways, so keep the current page's link in view.
+  useEffect(() => {
+    const nav = navRef.current;
+    const link = nav?.querySelector<HTMLElement>('.nav-link.on');
+    if (nav && link) nav.scrollTo({ left: link.offsetLeft - nav.offsetLeft - (nav.clientWidth - link.offsetWidth) / 2, behavior: 'smooth' });
+  }, [loc]);
   return (
     <header className="rail-top">
       <Link href="/" className="brand">Bob <em>v</em> Mike</Link>
-      <nav aria-label="Main">
+      <nav aria-label="Main" ref={navRef}>
         {NAV.map((n) => {
           const active = n.exact ? loc === n.href : loc.startsWith(n.href);
           return (
@@ -121,7 +147,7 @@ function ScrollManager() {
     const id = window.location.hash.slice(1);
     const el = id ? document.getElementById(id) : null;
     if (el) el.scrollIntoView();
-    else window.scrollTo(0, 0);
+    else window.scrollTo({ top: 0, behavior: 'instant' });
   }, [loc, ready]);
   return null;
 }
@@ -155,6 +181,7 @@ export function App() {
       <Header />
       <ConflictBanner />
       <ScrollManager />
+      <SwipeNav />
       <main>
         {!doc ? <Racking error={loadError} /> : (
           <Switch>
