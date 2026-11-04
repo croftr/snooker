@@ -48,9 +48,21 @@ To edit, click **Referee** in the top bar. Locally any password works unless you
 
 To try the real S3 file from your machine, put the same values in `.env.local` and add `FORCE_CLOUD=1`.
 
+## Using it offline
+
+Open the site once with a connection on each phone, ideally adding it to the home screen, and it will then work with no signal.
+
+- **The app and photos** are kept on the device by a service worker (`sw/sw.js`). Service workers only run in the built site, not in `npm run dev`.
+- **Edits** save to the device straight away (`src/lib/store.tsx`) and sync by themselves when there's a connection: right after an edit, every 30 seconds, and when the app reopens. The yellow button in the header shows what's waiting and syncs on demand.
+- **Photos** added offline are kept on the device and uploaded on the next sync.
+- **The password** can't be checked offline, so it's checked at the next sync. If it's wrong, nothing syncs and the edits stay safe until the right one is entered.
+- **Clashes:** if the site changed while a device had unsynced edits, a banner asks which version to keep, because the whole file gets replaced either way. This shouldn't normally come up.
+
+To test the real offline build locally, run `npm run dev` in one terminal, and `npm run build` then `npm run preview` in another. Open the preview URL once, then stop the preview server and reload.
+
 ## How it works
 
-- **Storage:** `server/store.ts` reads and writes `snooker-data-v1.json`, the same pattern as booky. Saves use S3's `If-Match`, so if two people save at once the second gets a "someone else saved first" message and nothing is overwritten. Booky's bucket versioning means old versions can be recovered.
+- **Storage:** `server/store.ts` reads and writes `snooker-data-v1.json`, the same pattern as booky. Saves use S3's `If-Match`, so an out-of-date device can't overwrite newer data without asking. Booky's bucket versioning means old versions can be recovered.
 - **Totals are never stored.** Scores, league tables, winners and stats are all worked out from the sessions in `src/lib/stats.ts`. Fix a session and everything follows.
 - **Photos:** the originals are in `public/photos`. New ones go to `images/snooker/` in the bucket, resized in the browser first.
 - **Reading is open, editing needs the password.** Anyone with the URL can read the site.

@@ -23,7 +23,7 @@ export function SessionModal({ t, session, onClose, onWinner }: {
   onClose(): void;
   onWinner(p: PlayerId): void;
 }) {
-  const { doc, mutate, saving } = useStore();
+  const { doc, mutate } = useStore();
   const [date, setDate] = useState(session ? session.date ?? '' : today());
   const [frames, setFrames] = useState({ bob: session?.bob ?? 0, mike: session?.mike ?? 0 });
   const [bonus, setBonus] = useState({ bob: session?.bonusBob ?? 0, mike: session?.bonusMike ?? 0 });
@@ -125,13 +125,13 @@ export function SessionModal({ t, session, onClose, onWinner }: {
 
         <footer className="form-foot">
           {session && (confirming ? (
-            <button type="button" className="btn btn-danger" disabled={saving} onClick={remove}>Yes, delete it</button>
+            <button type="button" className="btn btn-danger" onClick={remove}>Yes, delete it</button>
           ) : (
             <button type="button" className="btn btn-ghost" onClick={() => setConfirming(true)}>Delete session</button>
           ))}
           <span className="grow" />
           <button type="button" className="btn btn-ghost" onClick={onClose}>Cancel</button>
-          <button type="button" className="btn" disabled={saving} onClick={save}>{saving ? 'Saving…' : session ? 'Save changes' : 'Put it on the board'}</button>
+          <button type="button" className="btn" onClick={save}>{session ? "Save changes" : "Put it on the board"}</button>
         </footer>
       </div>
     </Modal>

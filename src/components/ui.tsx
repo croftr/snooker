@@ -48,7 +48,6 @@ export function FormModal({ title, fields, initial, submit, onSubmit, onDelete, 
 }) {
   const [v, setV] = useState(initial);
   const [confirming, setConfirming] = useState(false);
-  const { saving } = useStore();
 
   const go = async (e: FormEvent) => {
     e.preventDefault();
@@ -77,7 +76,7 @@ export function FormModal({ title, fields, initial, submit, onSubmit, onDelete, 
         ))}
         <footer className="form-foot">
           {onDelete && (confirming ? (
-            <button type="button" className="btn btn-danger" disabled={saving} onClick={async () => { if ((await onDelete()) !== false) onClose(); }}>
+            <button type="button" className="btn btn-danger" onClick={async () => { if ((await onDelete()) !== false) onClose(); }}>
               Yes, really delete
             </button>
           ) : (
@@ -85,7 +84,7 @@ export function FormModal({ title, fields, initial, submit, onSubmit, onDelete, 
           ))}
           <span className="grow" />
           <button type="button" className="btn btn-ghost" onClick={onClose}>Cancel</button>
-          <button className="btn" disabled={saving}>{saving ? 'Saving…' : submit}</button>
+          <button className="btn">{submit}</button>
         </footer>
       </form>
     </Modal>

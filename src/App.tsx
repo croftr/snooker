@@ -55,6 +55,41 @@ function Whistle() {
   );
 }
 
+/** Always-visible save state: offline, how much is waiting, and a Sync button. */
+function SyncPill() {
+  const { online, pending, syncStatus, syncNow, unlocked } = useStore();
+  const label = `${pending} ${pending === 1 ? 'change' : 'changes'}`;
+
+  if (syncStatus === 'syncing') return <span className="sync sync-busy" role="status"><i className="sync-dot" /> Syncing…</span>;
+  if (syncStatus === 'needs-password' || (pending > 0 && !unlocked)) {
+    return <span className="sync sync-warn" role="status">{label} waiting: blow the whistle to sync</span>;
+  }
+  if (syncStatus === 'conflict') return null; // The banner below the header takes over.
+  if (pending > 0) {
+    return (
+      <button className="sync sync-warn" onClick={() => void syncNow()} title="Saved on this device, not on the site yet">
+        {online ? <span>{label} to sync</span> : <span>Offline: {label} saved here</span>}
+        <b>Sync</b>
+      </button>
+    );
+  }
+  return online ? null : <span className="sync" role="status"><i className="sync-dot sync-off" /> Offline</span>;
+}
+
+function ConflictBanner() {
+  const { syncStatus, resolveConflict } = useStore();
+  if (syncStatus !== 'conflict') return null;
+  return (
+    <div className="conflict" role="alert">
+      <p><strong>The site changed while this device had unsynced changes.</strong> Which version should win?</p>
+      <div>
+        <button className="btn" onClick={() => void resolveConflict('mine')}>Keep this device's</button>
+        <button className="btn btn-ghost" onClick={() => void resolveConflict('site')}>Use the site's</button>
+      </div>
+    </div>
+  );
+}
+
 function Header() {
   const [loc] = useLocation();
   return (
@@ -71,6 +106,7 @@ function Header() {
           );
         })}
       </nav>
+      <SyncPill />
       <Whistle />
     </header>
   );
@@ -117,6 +153,7 @@ export function App() {
   return (
     <div className={unlocked ? 'app is-ref' : 'app'}>
       <Header />
+      <ConflictBanner />
       <ScrollManager />
       <main>
         {!doc ? <Racking error={loadError} /> : (
