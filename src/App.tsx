@@ -8,6 +8,7 @@ import { Home } from './pages/Home';
 import { TournamentPage } from './pages/TournamentPage';
 import { Rules } from './pages/Rules';
 import { Hall } from './pages/Hall';
+import { ChangeLog } from './pages/ChangeLog';
 
 const NAV = [
   { href: '/', label: 'The Table', ball: 'red', exact: true },
@@ -111,6 +112,7 @@ function SwipeNav() {
 
 function Header() {
   const [loc] = useLocation();
+  const { unlocked } = useStore();
   const navRef = useRef<HTMLElement>(null);
   // On a phone the menu scrolls sideways, so keep the current page's link in view.
   useEffect(() => {
@@ -131,6 +133,12 @@ function Header() {
             </Link>
           );
         })}
+        {unlocked && (
+          <Link href="/log" className={`nav-link ${loc === '/log' ? 'on' : ''}`} aria-current={loc === '/log' ? 'page' : undefined}>
+            <span className="ball ball-pink" aria-hidden="true" />
+            Change log
+          </Link>
+        )}
       </nav>
       <SyncPill />
       <Whistle />
@@ -190,6 +198,7 @@ export function App() {
             <Route path="/tournaments/:id">{(p) => <TournamentPage key={p.id} id={p.id} />}</Route>
             <Route path="/rules" component={Rules} />
             <Route path="/hall" component={Hall} />
+            <Route path="/log" component={ChangeLog} />
             <Route>
               <div className="racking"><h1>Missed.</h1><p>That page has rolled off the table. <Link href="/">Go back to it</Link>.</p></div>
             </Route>

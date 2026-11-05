@@ -114,4 +114,5 @@ export function fmtDate(iso: string | null, opts: { short?: boolean } = {}) {
 }
 
 export const fmtNum = (n: number) => n.toLocaleString('en-GB');
+export const today = () => new Date().toISOString().slice(0, 10);
 export const uid = (p: string) => `${p}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;

@@ -40,6 +40,8 @@ export interface Award { id: string; title: string; holder: PlayerId }
 export interface Photo { id: string; src: string; caption: string }
 export interface PlantBoyEvent { id: string; period: string; text: string }
 
+export interface ChangeEntry { id: string; /** ISO time the edit was made on the device */ at: string; changes: string[] }
+
 export interface SnookerDoc {
   schema: 1;
   players: Record<PlayerId, { name: string; nick: string; portrait: string }>;
@@ -56,4 +58,6 @@ export interface SnookerDoc {
   records: RecordRow[];
   awards: Award[];
   gallery: Photo[];
+  /** Oldest first. Missing from docs saved before the log existed. */
+  changelog?: ChangeEntry[];
 }

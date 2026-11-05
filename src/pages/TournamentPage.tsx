@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import confetti from 'canvas-confetti';
 import { Link, useLocation } from 'wouter';
 import { useStore } from '../lib/store';
-import { championship, fmtDate, liveTournament, standing, uid } from '../lib/stats';
+import { championship, fmtDate, liveTournament, standing, today, uid } from '../lib/stats';
 import type { PlayerId, Session, SnookerDoc, Tournament } from '../types';
 import { PLAYERS } from '../types';
 import { FormModal, Modal, PhotoButton, PlayerBall, Polaroid, type Field } from '../components/ui';
@@ -173,7 +173,7 @@ function League({ t, doc, st }: { t: Tournament; doc: SnookerDoc; st: ReturnType
   );
 }
 
-function Scoresheet({ t, doc, onEdit }: { t: Tournament; doc: SnookerDoc; onEdit(s: Session): void }) {
+function Scoresheet({ t, doc, onEdit, onWinner }: { t: Tournament; doc: SnookerDoc; onEdit(s: Session): void; onWinner(p: PlayerId): void }) {
   const { unlocked } = useStore();
   const showBonus = t.bonusValue > 0;
   const cols = 4 + (showBonus ? 2 : 0) + (unlocked ? 1 : 0);
@@ -200,7 +200,77 @@ function Scoresheet({ t, doc, onEdit }: { t: Tournament; doc: SnookerDoc; onEdit
           </tbody>
         </table>
       </div>
+      {unlocked && <NewSessionRow key={t.id} t={t} doc={doc} showBonus={showBonus} onWinner={onWinner} />}
     </div>
+  );
+}
+
+/**
+ * The next line of the sheet in edit mode. It sits outside the table's sideways
+ * scroll so that on a phone every box and the Add button stay on screen.
+ */
+function NewSessionRow({ t, doc, showBonus, onWinner }: { t: Tournament; doc: SnookerDoc; showBonus: boolean; onWinner(p: PlayerId): void }) {
+  const { mutate } = useStore();
+  const blank = { bob: '', mike: '', bonusBob: '', bonusMike: '' };
+  const [date, setDate] = useState(today);
+  const [scores, setScores] = useState(blank);
+  const firstScore = useRef<HTMLInputElement>(null);
+  const n = t.sessions.length + 1;
+  // Needs a frame score, so a stray tap can't put a 0–0 on the board. Blank boxes count as 0.
+  const ready = scores.bob !== '' || scores.mike !== '';
+
+  const add = async (e: FormEvent) => {
+    e.preventDefault();
+    const built: Session = {
+      id: uid('s'),
+      date: date || null,
+      bob: Number(scores.bob),
+      mike: Number(scores.mike),
+      bonusBob: showBonus ? Number(scores.bonusBob) : null,
+      bonusMike: showBonus ? Number(scores.bonusMike) : null,
+      notes: [],
+    };
+    const before = standing(t).winner;
+    const after = standing({ ...t, sessions: [...t.sessions, built] }).winner;
+    const ok = await mutate((d) => {
+      d.tournaments.find((x) => x.id === t.id)!.sessions.push(built);
+    }, 'Session on the board. Chalk up.');
+    if (!ok) return;
+    setScores(blank);
+    // Ready for the next one, but don't throw a phone's keyboard back up over the sheet.
+    if (window.matchMedia('(pointer: fine)').matches) firstScore.current?.focus();
+    if (after && !before) onWinner(after);
+  };
+
+  const box = (key: keyof typeof blank, label: string, title: string, ref?: typeof firstScore) => (
+    <label className="sheet-new-box" title={title}>
+      <span>{label}</span>
+      <input
+        ref={ref}
+        type="number"
+        inputMode="numeric"
+        min={0}
+        step={1}
+        placeholder="0"
+        aria-label={title}
+        value={scores[key]}
+        onChange={(e) => setScores((s) => ({ ...s, [key]: e.target.value }))}
+      />
+    </label>
+  );
+
+  return (
+    <form className="sheet-new" onSubmit={add}>
+      <label className="sheet-new-box sheet-new-date">
+        <span>Session {n}</span>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+      </label>
+      {box('bob', doc.players.bob.name, `Frames for ${doc.players.bob.name}`, firstScore)}
+      {box('mike', doc.players.mike.name, `Frames for ${doc.players.mike.name}`)}
+      {showBonus && box('bonusBob', `BP ${doc.players.bob.name}`, `Bonus points for ${doc.players.bob.name}`)}
+      {showBonus && box('bonusMike', `BP ${doc.players.mike.name}`, `Bonus points for ${doc.players.mike.name}`)}
+      <button className="sheet-add" disabled={!ready}>Add</button>
+    </form>
   );
 }
 
@@ -301,7 +371,7 @@ export function TournamentPage({ id }: { id: string }) {
                 <WormChart t={t} doc={d} />
               </section>
             )}
-            <Scoresheet t={t} doc={d} onEdit={setEditing} />
+            <Scoresheet t={t} doc={d} onEdit={setEditing} onWinner={setWinner} />
           </div>
           <aside className="tside">
             {t.photo && <Polaroid src={t.photo} caption={t.name} tilt={2.5} />}

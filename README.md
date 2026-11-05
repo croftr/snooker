@@ -66,6 +66,7 @@ To test the real offline build locally, run `npm run dev` in one terminal, and `
 - **Totals are never stored.** Scores, league tables, winners and stats are all worked out from the sessions in `src/lib/stats.ts`. Fix a session and everything follows.
 - **Photos:** the originals are in `public/photos`. New ones go to `images/snooker/` in the bucket, resized in the browser first.
 - **Reading is open, editing needs the password.** Anyone with the URL can read the site.
+- **Change log:** every edit is recorded in the data file with the time it was made, shown on `/log` to the referee (`src/lib/changes.ts`). It lives in the same public file as the scores, so it's hidden from the menu, not secret.
 
 ## Where things are
 

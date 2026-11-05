@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import type { SnookerDoc } from '../types';
+import type { ChangeEntry, SnookerDoc } from '../types';
 import { uid } from './stats';
+import { describeChanges } from './changes';
 
 /*
  * Offline first. Every edit is saved to this device straight away, and the app
@@ -257,6 +258,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         status('synced');
         toast('Now showing the version from the site.');
       } else {
+        // This device's copy replaces the site's, but the log should keep what happened there too.
+        const mine = docRef.current!;
+        const entries = new Map<string, ChangeEntry>([...(j.doc.changelog ?? []), ...(mine.changelog ?? [])].map((e: ChangeEntry) => [e.id, e]));
+        const kept: ChangeEntry = { id: uid('c'), at: new Date().toISOString(), changes: ["Kept this device's version over the site's, so changes made elsewhere were overwritten"] };
+        setDoc({ ...mine, changelog: [...entries.values(), kept].sort((a, b) => a.at.localeCompare(b.at)) });
         persist();
         status('waiting');
         await sync();
@@ -294,6 +300,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const previous = docRef.current;
     const next = structuredClone(previous);
     fn(next);
+    const changes = describeChanges(previous, next);
+    if (changes.length) (next.changelog ??= []).push({ id: uid('c'), at: new Date().toISOString(), changes });
     setDoc(next);
     setPendingCount(pendingRef.current + 1);
     if (!persist()) {

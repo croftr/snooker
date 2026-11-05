@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Note, PlayerId, Session, Tournament } from '../types';
 import { PLAYERS } from '../types';
 import { useStore } from '../lib/store';
-import { standing, uid } from '../lib/stats';
+import { standing, today, uid } from '../lib/stats';
 import { Modal, PlayerBall } from './ui';
 
 function Stepper({ value, onChange, label, min = 0 }: { value: number; onChange(n: number): void; label: string; min?: number }) {
@@ -14,8 +14,6 @@ function Stepper({ value, onChange, label, min = 0 }: { value: number; onChange(
     </div>
   );
 }
-
-const today = () => new Date().toISOString().slice(0, 10);
 
 export function SessionModal({ t, session, onClose, onWinner }: {
   t: Tournament;
