@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
-import confetti from 'canvas-confetti';
+import { useRef, useState, type FormEvent } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useStore } from '../lib/store';
 import { championship, fmtDate, liveTournament, standing, today, uid } from '../lib/stats';
@@ -8,15 +7,6 @@ import { PLAYERS } from '../types';
 import { FormModal, Modal, PhotoButton, PlayerBall, Polaroid, type Field } from '../components/ui';
 import { WormChart } from '../components/WormChart';
 import { SessionModal } from '../components/SessionModal';
-
-const BALL_COLOURS = ['#e4283a', '#ffd92e', '#17a35c', '#94572a', '#2b84e8', '#ff9dc0', '#17171b', '#fffdf4'];
-
-function celebrate() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const shot = (x: number) => confetti({ particleCount: 90, spread: 80, origin: { x, y: 0.7 }, colors: BALL_COLOURS, shapes: ['circle'], scalar: 1.5 });
-  shot(0.25); shot(0.75);
-  setTimeout(() => shot(0.5), 300);
-}
 
 const tournamentFields: Field[] = [
   { key: 'name', label: 'Name', type: 'text', required: true },
@@ -80,26 +70,16 @@ function Flood({ t, doc }: { t: Tournament; doc: SnookerDoc }) {
   return (
     <section className="flood">
       <div className="flood-sky">
+        {t.photo && <div className="flood-photo"><Polaroid src={t.photo} caption={`${doc.players[t.winner ?? 'mike'].name}, before the water came`} /></div>}
         <p className="eyebrow">{t.name} · {t.year}</p>
         <h1 className="flood-title">{t.notes[0] ?? 'Lost'}</h1>
-        {t.winner && <p className="flood-winner"><PlayerBall id={t.winner} size={24} /> Winner: {doc.players[t.winner].nick}. We have only the word of the survivors.</p>}
-        {t.photo && <div className="flood-photo"><Polaroid src={t.photo} caption={`${doc.players[t.winner ?? 'mike'].name}, before the water came`} tilt={-5} /></div>}
+        {t.winner && <p className="flood-winner"><PlayerBall id={t.winner} /> Winner: {doc.players[t.winner].nick}. We have only the word of the survivors.</p>}
       </div>
-      <div className="flood-water" aria-hidden="true">
-        <span className="float float-a ball ball-red" />
-        <span className="float float-b ball ball-black" />
-        <span className="float float-c paper">Session ?<br />?? – ??</span>
-        <span className="float float-d ball ball-pink" />
-        <svg className="wave wave-1" viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40 Q150 0 300 40 T600 40 T900 40 T1200 40 V80 H0Z" /></svg>
-        <svg className="wave wave-2" viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40 Q150 80 300 40 T600 40 T900 40 T1200 40 V80 H0Z" /></svg>
-      </div>
-      <div className="flood-deep">
-        <dl className="flood-tally">
-          <div><dt>Sessions recovered</dt><dd>{t.sessions.length}</dd></div>
-          <div><dt>Frames recovered</dt><dd>0</dd></div>
-          <div><dt>Excuses recovered</dt><dd>All of them</dd></div>
-        </dl>
-      </div>
+      <dl className="flood-tally">
+        <div><dt>Sessions recovered</dt><dd>{t.sessions.length}</dd></div>
+        <div><dt>Frames recovered</dt><dd>0</dd></div>
+        <div><dt>Excuses recovered</dt><dd>All of them</dd></div>
+      </dl>
     </section>
   );
 }
@@ -310,7 +290,6 @@ function SheetRow({ s, n, showBonus, doc, cols, unlocked, onEdit }: { s: Session
 }
 
 function Winner({ p, doc, champion, onClose }: { p: PlayerId; doc: SnookerDoc; champion: boolean; onClose(): void }) {
-  useEffect(() => { celebrate(); }, []);
   return (
     <Modal title={champion ? 'We have a new Champion' : 'Frame, match, tournament'} onClose={onClose}>
       <div className="winner-pop">
@@ -374,7 +353,7 @@ export function TournamentPage({ id }: { id: string }) {
             <Scoresheet t={t} doc={d} onEdit={setEditing} onWinner={setWinner} />
           </div>
           <aside className="tside">
-            {t.photo && <Polaroid src={t.photo} caption={t.name} tilt={2.5} />}
+            {t.photo && <Polaroid src={t.photo} caption={t.name} />}
             {t.notes.length > 0 && (
               <div className="pinned">
                 {t.notes.map((n, i) => <p key={i}>{n}</p>)}

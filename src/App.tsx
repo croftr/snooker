@@ -11,10 +11,10 @@ import { Hall } from './pages/Hall';
 import { ChangeLog } from './pages/ChangeLog';
 
 const NAV = [
-  { href: '/', label: 'The Table', ball: 'red', exact: true },
-  { href: '/tournaments', label: 'Tournaments', ball: 'yellow' },
-  { href: '/rules', label: 'The Rules', ball: 'green' },
-  { href: '/hall', label: 'Hall of Fame', ball: 'blue' },
+  { href: '/', label: 'The Table', exact: true },
+  { href: '/tournaments', label: 'Tournaments' },
+  { href: '/rules', label: 'The Rules' },
+  { href: '/hall', label: 'Hall of Fame' },
 ];
 
 function Whistle() {
@@ -128,14 +128,12 @@ function Header() {
           const active = n.exact ? loc === n.href : loc.startsWith(n.href);
           return (
             <Link key={n.href} href={n.href} className={`nav-link ${active ? 'on' : ''}`} aria-current={active ? 'page' : undefined}>
-              <span className={`ball ball-${n.ball}`} aria-hidden="true" />
               {n.label}
             </Link>
           );
         })}
         {unlocked && (
           <Link href="/log" className={`nav-link ${loc === '/log' ? 'on' : ''}`} aria-current={loc === '/log' ? 'page' : undefined}>
-            <span className="ball ball-pink" aria-hidden="true" />
             Change log
           </Link>
         )}

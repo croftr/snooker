@@ -96,8 +96,8 @@ export function Rules() {
           {unlocked && <button className="btn btn-ghost" onClick={() => setDecree('new')}>Issue a decree</button>}
         </div>
         <div className="decrees">
-          {d.decrees.map((x, i) => (
-            <div key={x.id} className="decree" style={{ '--tilt': `${i % 2 ? 1.2 : -1}deg` } as any}>
+          {d.decrees.map((x) => (
+            <div key={x.id} className="decree">
               <p>{x.text}</p>
               {unlocked && <button className="sheet-edit" onClick={() => setDecree(x)} aria-label={`Edit decree: ${x.text}`}>Fix</button>}
             </div>
@@ -135,11 +135,11 @@ export function Rules() {
                     if (unlocked) {
                       return (
                         <button key={p} className={`rung-btn ${here ? 'on' : ''}`} aria-pressed={here} onClick={() => setHolder(p, rank)} aria-label={`${d.players[p].name}: ${rank}`}>
-                          <PlayerBall id={p} size={here ? 26 : 16} />
+                          <PlayerBall id={p} size={14} />
                         </button>
                       );
                     }
-                    return here ? <span key={p} className="rung-holder"><PlayerBall id={p} size={26} /> {d.players[p].nick}</span> : null;
+                    return here ? <span key={p} className="rung-holder"><PlayerBall id={p} /> {d.players[p].nick}</span> : null;
                   })}
                 </span>
               </li>

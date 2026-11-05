@@ -91,7 +91,7 @@ export function FormModal({ title, fields, initial, submit, onSubmit, onDelete, 
   );
 }
 
-export function Polaroid({ src, caption, tilt = 0, onClick }: { src: string; caption: string; tilt?: number; onClick?(): void }) {
+export function Polaroid({ src, caption, onClick }: { src: string; caption: string; onClick?(): void }) {
   const inner = (
     <>
       <span className="polaroid-img"><img src={src} alt={caption} loading="lazy" /></span>
@@ -99,9 +99,9 @@ export function Polaroid({ src, caption, tilt = 0, onClick }: { src: string; cap
     </>
   );
   return onClick ? (
-    <button className="polaroid" style={{ '--tilt': `${tilt}deg` } as any} onClick={onClick}>{inner}</button>
+    <button className="polaroid" onClick={onClick}>{inner}</button>
   ) : (
-    <figure className="polaroid" style={{ '--tilt': `${tilt}deg` } as any}>{inner}</figure>
+    <figure className="polaroid">{inner}</figure>
   );
 }
 

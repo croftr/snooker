@@ -88,7 +88,7 @@ export function SessionModal({ t, session, onClose, onWinner }: {
         <div className="session-players">
           {PLAYERS.map((p) => (
             <fieldset key={p} className="session-player" disabled={isVoid}>
-              <legend><PlayerBall id={p} size={22} /> {doc!.players[p].name}</legend>
+              <legend><PlayerBall id={p} /> {doc!.players[p].name}</legend>
               <div className="micro">Frames</div>
               <Stepper label={`frames for ${doc!.players[p].name}`} value={frames[p]} onChange={(n) => setFrames({ ...frames, [p]: n })} />
               {usesBonus && (

@@ -57,7 +57,6 @@ export function Home() {
   return (
     <>
       <section className="hero">
-        <div className="lamp" aria-hidden="true"><div className="lamp-shade" /><div className="lamp-light" /></div>
         <div className="hero-grid">
           <Portrait doc={d} id="bob" wins={wins.bob} />
           <div className="hero-mid">
@@ -99,7 +98,7 @@ export function Home() {
               const isLive = t && t.id === live?.id;
               const body = (
                 <>
-                  <span className={`road-ball ${w ? `ball ball-${w}` : isLive ? 'ball ball-white pulse' : 'ball ball-empty'}`} aria-hidden="true" />
+                  <span className={`road-ball ${w ? `ball ball-${w}` : isLive ? 'ball ball-white' : 'ball ball-empty'}`} aria-hidden="true" />
                   <b>{t ? t.name : `Tournament ${i + 1}`}</b>
                   <small>{t ? (w ? `${d.players[w].name} won` : isLive ? 'In play' : '') : 'If required'}</small>
                   {t && <small className="road-year">{t.year}</small>}
@@ -153,7 +152,7 @@ export function Home() {
             <Link href="/hall" className="btn btn-ghost">The whole Hall of Fame</Link>
           </div>
           <div className="strip">
-            {d.gallery.slice(0, 4).map((g, i) => <Polaroid key={g.id} src={g.src} caption={g.caption} tilt={[-3, 2, -1.5, 3][i]} />)}
+            {d.gallery.slice(0, 4).map((g) => <Polaroid key={g.id} src={g.src} caption={g.caption} />)}
           </div>
           <div className="scratch-note"><PlayerBall id="bob" size={12} /> <PlayerBall id="mike" size={12} /> Yes, those hats are real. The heads are negotiable.</div>
         </div>

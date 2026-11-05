@@ -1,9 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import '@fontsource/shrikhand';
-import '@fontsource/bungee';
-import '@fontsource/gochi-hand';
-import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/source-serif-4';
+import '@fontsource-variable/inter';
 import './styles.css';
 import { App } from './App';
 import { StoreProvider } from './lib/store';

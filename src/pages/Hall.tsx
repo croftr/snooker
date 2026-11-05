@@ -4,8 +4,6 @@ import { uid } from '../lib/stats';
 import type { Award, Photo, PlayerId, RecordRow } from '../types';
 import { FormModal, Modal, PhotoButton, PlayerBall, Polaroid } from '../components/ui';
 
-const TILTS = [-3, 2, -1.5, 3, -2, 1.5, -2.5, 2.5];
-
 export function Hall() {
   const { doc, unlocked, mutate } = useStore();
   const d = doc!;
@@ -35,7 +33,7 @@ export function Hall() {
           {d.awards.map((a) => (
             <article key={a.id} className="plaque">
               <span className="plaque-title">{a.title}</span>
-              <span className="plaque-holder"><PlayerBall id={a.holder} size={20} /> {d.players[a.holder].name}</span>
+              <span className="plaque-holder"><PlayerBall id={a.holder} /> {d.players[a.holder].name}</span>
               {unlocked && <button className="sheet-edit plaque-fix" onClick={() => setAward(a)} aria-label={`Edit ${a.title}`}>Fix</button>}
             </article>
           ))}
@@ -52,8 +50,8 @@ export function Hall() {
             <thead>
               <tr>
                 <th scope="col"><span className="sr-only">Record</span></th>
-                <th scope="col"><PlayerBall id="bob" size={16} /> {d.players.bob.name}</th>
-                <th scope="col"><PlayerBall id="mike" size={16} /> {d.players.mike.name}</th>
+                <th scope="col"><PlayerBall id="bob" /> {d.players.bob.name}</th>
+                <th scope="col"><PlayerBall id="mike" /> {d.players.mike.name}</th>
                 {unlocked && <th scope="col"><span className="sr-only">Edit</span></th>}
               </tr>
             </thead>
@@ -83,9 +81,9 @@ export function Hall() {
             )}
           </div>
           <div className="wall">
-            {d.gallery.map((g, i) => (
+            {d.gallery.map((g) => (
               <div key={g.id} className="wall-item">
-                <Polaroid src={g.src} caption={g.caption} tilt={TILTS[i % TILTS.length]} onClick={() => setViewing(g)} />
+                <Polaroid src={g.src} caption={g.caption} onClick={() => setViewing(g)} />
                 {unlocked && <button className="sheet-edit wall-fix" onClick={() => setCaption(g)}>Caption</button>}
               </div>
             ))}

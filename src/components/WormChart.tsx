@@ -15,7 +15,7 @@ export function WormChart({ t, doc }: { t: Tournament; doc: SnookerDoc }) {
   const unit = league ? 'points' : 'frames';
 
   const h = 280;
-  const pad = { l: 38, r: 74, t: 14, b: 34 };
+  const pad = { l: 38, r: 74, t: 22, b: 34 };
   const iw = Math.max(1, width - pad.l - pad.r);
   const ih = h - pad.t - pad.b;
   const maxY = Math.max(target ?? 0, ...rows.map((r) => Math.max(r.bob, r.mike)), 4);
