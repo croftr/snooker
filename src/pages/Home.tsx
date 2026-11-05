@@ -5,7 +5,6 @@ import { championship, fmtDate, fmtNum, globalStats, liveTournament, standing } 
 import type { PlayerId, SnookerDoc } from '../types';
 import { PLAYERS } from '../types';
 import { PlayerBall, Polaroid } from '../components/ui';
-import { SnookerTable } from '../components/SnookerTable';
 
 function Portrait({ doc, id, wins }: { doc: SnookerDoc; id: PlayerId; wins: number }) {
   const p = doc.players[id];
@@ -50,8 +49,6 @@ export function Home() {
   const st = live ? standing(live) : null;
   const { wins, champion } = championship(d);
   const stats = globalStats(d);
-  const high = Number(d.records.find((r) => r.id === 'high')?.mike ?? 0);
-  const highBoth = Math.max(high, Number(d.records.find((r) => r.id === 'high')?.bob ?? 0));
   const toPlay = d.championship.target * 2 - 1;
   const road = Array.from({ length: Math.max(toPlay, d.tournaments.length) }, (_, i) => d.tournaments[i] ?? null);
   const big = stats.biggest;
@@ -91,13 +88,6 @@ export function Home() {
       </section>
 
       <Quotes doc={d} />
-
-      <section className="band">
-        <div className="wrap">
-          <h2 className="h2">Take a shot</h2>
-          <SnookerTable doc={d} highBreak={highBoth} />
-        </div>
-      </section>
 
       <section className="band band-dark">
         <div className="wrap">

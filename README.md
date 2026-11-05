@@ -72,7 +72,6 @@ To test the real offline build locally, run `npm run dev` in one terminal, and `
 | Path | What |
 |---|---|
 | `src/pages` | Home, Tournament, Rules, Hall of Fame |
-| `src/components/SnookerTable.tsx` | The playable table |
 | `src/components/SessionModal.tsx` | Logging and fixing sessions |
 | `src/lib/stats.ts` | All the scoring logic |
 | `server/`, `api/` | Storage and the Vercel functions |

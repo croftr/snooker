@@ -5,7 +5,7 @@ const MAX_MS = 700;
 /** Leaves the screen edges to the phone's own back and forward gestures. */
 const EDGE = 24;
 /** Places where a sideways drag already means something else. */
-const NOT_HERE = 'canvas, .worm, dialog, input, textarea, select';
+const NOT_HERE = '.worm, dialog, input, textarea, select';
 
 function scrollsSideways(start: Element | null) {
   for (let el = start; el && el !== document.body; el = el.parentElement) {
